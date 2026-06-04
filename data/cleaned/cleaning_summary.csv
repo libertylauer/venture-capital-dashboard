@@ -1,0 +1,4 @@
+Dataset,Business Purpose,Cleaning Completed,Key Fields
+acquisitions,Analyze startup acquisition activity and exit values,"Converted date fields, standardized currency codes, handled missing text fields, converted acquisition values to numeric format, created acquisition year field, removed duplicate records","acquired_at, price_amount, acquired_object_id"
+funds,Analyze venture capital fund sizes and fundraising activity,"Converted date fields, standardized currency codes, handled missing text fields, converted fund amounts to numeric format, created funded year field, removed duplicate records","funded_at, raised_amount, fund_id"
+investments,Analyze investor participation and investment activity,"Converted date fields, validated key join IDs, created investment year field, removed duplicate records","investor_object_id, funded_object_id, funding_round_id"
