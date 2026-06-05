@@ -4,23 +4,16 @@ The following data dictionary documents the key fields used throughout the Ventu
 
 | Dataset | Field | Description | Business Use |
 |----------|----------|----------|----------|
-| funding_rounds | funded_at | Date the funding round occurred | Analyze startup funding trends over time |
 | funding_rounds | raised_amount_usd | Amount raised during the funding round (USD) | Measure funding activity and investment volume |
-| objects | object_id | Unique identifier for a company or organization | Join company information across datasets |
-| objects | name | Company name | Reporting and dashboard labeling |
 | objects | category_code | Industry or business category | Industry and sector analysis |
 | funds | fund_id | Unique fund identifier | Join fund information with other datasets |
-| funds | name | Venture capital fund name | Identify and rank VC funds |
 | funds | raised_amount | Total capital raised by the fund | Determine largest venture capital funds |
-| funds | funded_at | Fund creation or fundraising date | Fundraising trend analysis |
 | investments | investor_object_id | Investor identifier | Identify active investors |
 | investments | funded_object_id | Startup receiving investment | Track investment relationships |
 | investments | funding_round_id | Funding round identifier | Connect investments to funding activity |
 | acquisitions | acquired_object_id | Acquired startup identifier | Link acquisition events to companies |
-| acquisitions | acquired_at | Acquisition date | Analyze acquisition activity over time |
 | acquisitions | price_amount | Acquisition value | Identify highest-value acquisitions |
 | acquisitions | term_code | Acquisition payment type | Analyze acquisition structures |
-| ipos | object_id | Company identifier | Link IPO events to companies |
 | ipos | public_at | IPO date | Analyze IPO activity over time |
 | ipos | valuation_amount | Company valuation at IPO | Identify highest-value IPO events |
 | ipos | raised_amount | Capital raised through IPO | Measure IPO fundraising performance |
