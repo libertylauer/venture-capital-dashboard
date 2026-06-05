@@ -1,35 +1,77 @@
 # Data Dictionary
 
-The following data dictionary documents the key fields used throughout the Venture Capital Portfolio and Exit Analytics Dashboard project. Only business-critical fields used in analysis, SQL queries, and dashboard development are included.
+This data dictionary documents the key fields used for the Venture Capital Portfolio and Exit Analytics Dashboard.
 
-| Dataset | Field | Description | Business Use |
-|----------|----------|----------|----------|
-| funding_rounds | raised_amount_usd | Amount raised during the funding round (USD) | Measure funding activity and investment volume |
-| objects | category_code | Industry or business category | Industry and sector analysis |
-| funds | fund_id | Unique fund identifier | Join fund information with other datasets |
-| funds | raised_amount | Total capital raised by the fund | Determine largest venture capital funds |
-| investments | investor_object_id | Investor identifier | Identify active investors |
-| investments | funded_object_id | Startup receiving investment | Track investment relationships |
-| investments | funding_round_id | Funding round identifier | Connect investments to funding activity |
-| acquisitions | acquired_object_id | Acquired startup identifier | Link acquisition events to companies |
-| acquisitions | price_amount | Acquisition value | Identify highest-value acquisitions |
-| acquisitions | term_code | Acquisition payment type | Analyze acquisition structures |
-| ipos | public_at | IPO date | Analyze IPO activity over time |
-| ipos | valuation_amount | Company valuation at IPO | Identify highest-value IPO events |
-| ipos | raised_amount | Capital raised through IPO | Measure IPO fundraising performance |
-| ipos | stock_symbol | Public market ticker symbol | Reference publicly traded companies |
+## objects.csv
 
-## Notes
+| Column | Description | Used For |
+|---|---|---|
+| object_id | Unique identifier for each company, investor, person, or organization | Joining with other tables |
+| name | Company, investor, or organization name | Dashboard labels |
+| entity_type | Type of entity, such as company, financial organization, or person | Classifying records |
+| category_code | Industry or business category | Industry analysis |
+| status | Current company status | Company context |
+| country_code | Country location code | Geographic filtering |
 
-- `object_id` serves as the primary join key for company-level analysis.
-- `funding_round_id` links investment activity to funding rounds.
-- Acquisition and IPO datasets are combined to analyze startup exit outcomes.
-- Only fields directly supporting the project's business questions are documented.
+## funding_rounds.csv
 
-## Business Questions Supported
+| Column | Description | Used For |
+|---|---|---|
+| id | Unique funding round record ID | Record tracking |
+| object_id | Startup/company receiving funding | Joining with objects table |
+| funded_at | Date of funding round | Funding trends over time |
+| funding_round_type | Type of funding round | Investment type analysis |
+| funding_round_code | Funding stage/code | Funding stage analysis |
+| raised_amount_usd | Amount raised in USD | KPI: total funding raised |
+| funded_year | Year of funding round | Dashboard time-series charts |
 
-1. How has startup funding activity changed over time?
-2. Which venture capital funds have raised the most capital?
-3. Who are the most active investors?
-4. How do startups most commonly exit: acquisition or IPO?
-5. What acquisition and IPO events generated the highest valuations?
+## investments.csv
+
+| Column | Description | Used For |
+|---|---|---|
+| id | Unique investment record ID | Record tracking |
+| funding_round_id | Unique ID of the funding round | Joining with funding rounds |
+| funded_object_id | Company/startup receiving investment | Joining with company data |
+| investor_object_id | Investor providing funding | Identifying active investors |
+| created_at | Date investment record was created | Investment activity timeline |
+| investment_created_year | Year investment record was created | Dashboard time-series analysis |
+
+## funds.csv
+
+| Column | Description | Used For |
+|---|---|---|
+| id | Unique fund record ID | Record tracking |
+| fund_id | Unique fund identifier | Fund tracking |
+| object_id | Venture capital organization associated with the fund | Joining with objects table |
+| name | Fund name | Dashboard labels |
+| funded_at | Date fund was raised/created | Fund activity over time |
+| funded_year | Year fund was raised/created | Dashboard time-series analysis |
+| raised_amount | Amount raised by the fund | KPI: largest funds |
+| raised_currency_code | Currency of fund amount | Currency context |
+
+## acquisitions.csv
+
+| Column | Description | Used For |
+|---|---|---|
+| id | Unique acquisition record ID | Record tracking |
+| acquisition_id | Unique acquisition identifier | Acquisition tracking |
+| acquiring_object_id | Company or organization making the acquisition | Acquirer analysis |
+| acquired_object_id | Company/startup being acquired | Joining with company data |
+| term_code | Type of acquisition payment | Deal structure context |
+| price_amount | Acquisition value | KPI: acquisition value |
+| price_currency_code | Currency of acquisition value | Currency context |
+| acquired_at | Date acquisition occurred | Acquisition trends over time |
+| acquired_year | Year acquisition occurred | Dashboard time-series charts |
+
+## ipos.csv
+
+| Column | Description | Used For |
+|---|---|---|
+| id | Unique IPO record ID | Record tracking |
+| object_id | Company that went public | Joining with objects table |
+| valuation_amount | IPO valuation amount | KPI: IPO valuation |
+| raised_amount | Amount raised during IPO | IPO performance analysis |
+| public_at | IPO date | IPO trends over time |
+| stock_symbol | Public stock ticker symbol | Company context |
+| ipo_year | Year of IPO | Dashboard time-series charts |
+| ipo_month | Month of IPO | Dashboard time-series charts |
